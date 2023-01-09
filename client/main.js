@@ -5,8 +5,10 @@ const newFragment = document.createDocumentFragment();
 const contDiv = document.getElementById("contDiv");
 
 myForm.onsubmit = (event) => {
-  event.preventDefault();
   postAnimal();
+  getAnimal().then((data) => {
+    updateUi(data);
+  });
 };
 
 const postAnimal = async (
@@ -43,16 +45,13 @@ const getAnimal = async (url = "http://localhost:8000/get") => {
 const updateUi = async (data) => {
   data.forEach((element) => {
     const newCard = document.createElement("div");
-    newCard.setAttribute("class", "col-md-4 mt-3 col-sm-12 cardDiv");
+    newCard.setAttribute("class", "col-md-4 mt-3 col-xs-12 gx-3 cardDiv");
     newCard.innerHTML = `
-                     <div class="card w-100" style="width: 18rem;">
+                     <div class="card w-100" style="width:12rem;">
                      <img src = "https://thumbs.dreamstime.com/z/road-dark-forest-magic-33128118.jpg" class="card-img-top" alt="...">
                      <div class="card-body">
                          <h2 class="card-title">Favorite Animal</h2>
                          <h3 id="retData"class="text-primary">${element.animal}</h3>
-                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                             card's content.</p>
-                         <a href="#" class="btn btn-primary">Go somewhere</a>
                      </div>
                  </div>
                      `;
@@ -61,6 +60,7 @@ const updateUi = async (data) => {
   });
   contDiv.appendChild(newFragment);
 };
+
 getAnimal().then((data) => {
   updateUi(data);
 });

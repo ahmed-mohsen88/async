@@ -1,6 +1,4 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -8,6 +6,6 @@ body {
   background: rgba(0, 0, 0, 0.5); /* Black color with 50% alpha/opacity */
 }
 
-.cardDiv {
-  width: 370px;
+#contDiv {
+  width: 100%;
 }
